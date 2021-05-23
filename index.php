@@ -18,12 +18,14 @@ $routes = [
     ['GET', '/konyv/{bookId}', 'bookHandler'],
     ['GET', '/uj-konyv', 'createBookFormHandler'],
     ['GET', '/konyv-szerkesztese/{bookId}', 'editbookHandler'],
+    ['GET', '/uj-szerzo', 'createAuthorFormHandler'],
     ['GET', '/szerzo-szerkesztese/{authorId}', 'editAuthorHandler'],
     ['GET', '/szerzok', 'authorsHandler'],
     ['GET', '/szerzo/{authorId}', 'authorHandler'],
     ['POST', '/konyv-szerkesztese/{bookId}', 'updateBookHandler'],
     ['POST', '/szerzo-szerkesztese/{authorId}', 'updateAuthorHandler'],
     ['POST', '/uj-konyv', 'createBookHandler'],
+    ['POST', '/uj-szerzo', 'createAuthorHandler'],
 
 ];
 
@@ -77,6 +79,25 @@ function authorHandler($urlParams)
             "author" => $author,
         ]),
     ]);
+}
+
+function createAuthorFormHandler()
+{
+    echo render("admin-wrapper.phtml", [
+        "content" => render("uj-szerzo.phtml")
+    ]);
+}
+
+function createAuthorHandler()
+{
+    $pdo = getConnection();
+
+    $stmt = $pdo->prepare("INSERT INTO authors (name, bio) VALUES (:name, :bio)");
+    $stmt->execute([
+        ":name" => $_POST["name"],
+        ":bio" => $_POST["bio"],
+    ]);
+    header("Location: /szerzo/" . $pdo->lastInsertId());
 }
 
 function editAuthorHandler($urlParams)
