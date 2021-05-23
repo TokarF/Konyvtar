@@ -1,0 +1,207 @@
+<div class="w3-container" id="showcase">
+  <h1 class="w3-xxxlarge w3-text-dark-grey w3-center"><b>Főoldal</b></h1>
+</div>
+
+<div class="w3-row-padding">
+  <div class="w3-col s12 m4 l4">
+    <a href="/szerzok">
+      <div class="w3-container w3-red w3-padding-16 w3-card-4">
+        <div class="w3-left"><i class="fa fa-pencil w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3><?= count($params["authors"]) ?></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Szerzők</h4>
+      </div>
+    </a>
+  </div>
+  <div class="w3-col s12 m4 l4">
+    <a href="/konyvek">
+      <div class="w3-container w3-green w3-padding-16 w3-card-4">
+        <div class="w3-left"><i class="fa fa-book w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3><?= count($params["books"]) ?></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Könyvek</h4>
+      </div>
+    </a>
+  </div>
+  <div class="w3-col s12 m4 l4">
+    <a href="/kategoriak">
+      <div class="w3-container w3-purple w3-padding-16 w3-card-4">
+        <div class="w3-left"><i class="fa fa-list w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3><?= count($params["categories"]) ?></h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Kategóriák</h4>
+      </div>
+    </a>
+  </div>
+</div>
+
+<div class="w3-row-padding w3-margin-bottom w3-centered">
+  <div class="w3-col s12 m6 l6">
+    <a href="kolcsonzesek.html">
+      <div class="w3-container w3-blue w3-padding-16 w3-card-4">
+        <div class="w3-left"><i class="fa fa-exchange w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>23</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Kölcsönzések</h4>
+      </div>
+    </a>
+  </div>
+  <div class="w3-col s12 m6 l6">
+    <a href="olvasok.html">
+      <div class="w3-container w3-orange w3-text-white w3-padding-16 w3-card-4">
+        <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+        <div class="w3-right">
+          <h3>50</h3>
+        </div>
+        <div class="w3-clear"></div>
+        <h4>Olvasók</h4>
+      </div>
+    </a>
+  </div>
+</div>
+
+<!-- Kölcsönzések -->
+<div class="w3-container  w3-margin-bottom">
+  <h2 class="">Kölcsönzések</h2>
+  <div class="w3-responsive w3-card-4">
+    <table class="w3-table w3-striped w3-bordered w3-border w3 w3-white ">
+      <thead class="w3-dark-grey">
+        <th style="width: 10%;">#</th>
+        <th style="width: 10%;">Könyv</th>
+        <th style="width: 30%;">Kölcsönző</th>
+        <th style="width: 20%;">Kikölcsönözve</th>
+        <th style="width: 20%;">Visszahozatal</th>
+        <th style="width: 10%;"></th>
+      </thead>
+      <tbody>
+        <tr class="w3-red">
+          <td>1</td>
+          <td>A gyűrűk ura</td>
+          <td>Beviz Elek</td>
+          <td>2021-03-15</td>
+          <td>2021-04-19</td>
+          <td class="">
+            <a class="w3-button w3-text-blue w3-border w3-border-blue w3-round w3-padding-small w3-hover-blue w3-text-center" href="">
+              <i class="fa fa-eye w3-xlarge"></i>
+            </a>
+          </td>
+        </tr>
+        <tr class="w3-orange">
+          <td>2</td>
+          <td>A kis herceg</td>
+          <td>Cic Imre</td>
+          <td>2021-03-16</td>
+          <td>2021-04-20</td>
+          <td class="">
+            <a class="w3-button w3-text-blue w3-border w3-border-blue w3-round w3-padding-small w3-hover-blue w3-text-center" href="">
+              <i class="fa fa-eye w3-xlarge"></i>
+            </a>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <div class="w3-center">
+    <a class="w3-button w3-border w3-border-dark-grey w3-hover-dark-grey w3-round">Kölcsönzések &nbsp;<i class="fa fa-arrow-right"></i></a>
+  </div>
+</div>
+
+<div class="w3-container  w3-margin-bottom">
+  <h2 class="">Legújabb Olvasók</h2>
+  <div class="w3-responsive w3-card-4">
+    <table class="w3-table w3-striped w3-bordered w3-border w3 w3-white w3-centered">
+      <thead class="w3-dark-grey">
+        <th style="width: 10%;">#</th>
+        <th style="width: 30%;">Név</th>
+        <th style="width: 30%;">Email</th>
+        <th style="width: 20%;">Telefon</th>
+        <th style="width: 10%;"></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Beviz Elek</td>
+          <td>bevizE@gmail.com</td>
+          <td>+36504589878</td>
+          <td class="">
+            <a class="w3-button w3-text-blue w3-border w3-border-blue w3-round w3-padding-small w3-hover-blue w3-text-center" href="">
+              <i class="fa fa-eye w3-xlarge"></i>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Para Zita</td>
+          <td>paraZ@gmail.com</td>
+          <td>+36504589878</td>
+          <td class="">
+            <a class="w3-button w3-text-blue w3-border w3-border-blue w3-round w3-padding-small w3-hover-blue w3-text-center" href="">
+              <i class="fa fa-eye w3-xlarge"></i>
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Nyomo Réka</td>
+          <td>nyomoR@gmail.com</td>
+          <td>+36504589878</td>
+          <td class="">
+            <a class="w3-button w3-text-blue w3-border w3-border-blue w3-round w3-padding-small w3-hover-blue w3-text-center" href="">
+              <i class="fa fa-eye w3-xlarge"></i>
+            </a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <div class="w3-center">
+    <a class="w3-button w3-border w3-border-dark-grey w3-hover-dark-grey w3-round">Olvasók &nbsp;<i class="fa fa-arrow-right"></i></a>
+  </div>
+</div>
+<!-- Könyvek -->
+<div class="w3-container  w3-margin-bottom">
+  <h2 class="">Legújabb könyvek</h2>
+  <div class="w3-responsive w3-card-4 w3-round-large">
+    <table class="w3-table w3-striped w3-bordered w3-border w3 w3-white ">
+      <thead class="w3-dark-grey">
+        <th style="width: 10%;">#</th>
+        <th style="width: 20%;">Cím</th>
+        <th style="width: 20%;">Szerző</th>
+        <th style="width: 30%;">Kategóriák</th>
+        <th style="width: 10%;">Kikölcsönözve</th>
+        <th style="width: 10%;"></th>
+      </thead>
+      <tbody>
+        <?php foreach ($params["books"] as $book) : ?>
+          <tr>
+            <td><?= $book["id"] ?></td>
+            <td><?= $book["title"] ?></td>
+            <td><?= $book["author"] ?></td>
+            <td><?= $book["categories"] ?></td>
+            <td><?= $book["isBorrowed"] ? "Igen" : "Nem" ?></td>
+            <td class="">
+              <a class="w3-button w3-text-blue w3-border w3-border-blue w3-round w3-padding-small w3-hover-blue w3-text-center" href="">
+                <i class="fa fa-eye w3-xlarge"></i>
+              </a>
+            </td>
+          </tr>
+        <?php endforeach; ?>
+      </tbody>
+    </table>
+  </div>
+  <br>
+  <div class="w3-center">
+    <a class="w3-button w3-border w3-border-dark-grey w3-hover-dark-grey w3-round">Könyvek &nbsp;<i class="fa fa-arrow-right"></i></a>
+  </div>
+</div>

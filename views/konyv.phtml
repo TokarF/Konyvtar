@@ -1,0 +1,106 @@
+
+<div class="w3-container  w3-margin-bottom-32" id="showcase">
+    <h1 class="w3-xxxlarge w3-text-dark-grey w3-center"><b>Könyv</b></h1>
+</div>
+
+<div class="w3-container w3-margin-bottom">
+    <div class="w3-responsive w3-card-4 w3-round-large">
+        <header class="w3-container w3-dark-grey">
+            <h2>Adatok</h2>
+        </header>
+        <div class="w3-row-padding w3-margin-bottom">
+            <div class="w3-col s12 m4 l4">
+                <h4><b>Cím:</b></h4>
+            </div>
+            <div class="w3-col s12 m8 l8">
+                <h4><?= $params["book"]["title"] ?></h4>
+            </div>
+            <div class="w3-col s12 m4 l4">
+                <h4><b>Szerző:</b></h4>
+            </div>
+            <div class="w3-col s12 m8 l8">
+                <h4><?= $params["book"]["author"]  ?></h4>
+            </div>
+            <div class="w3-col s12 m4 l4">
+                <h4><b>Leírás:</b></h4>
+            </div>
+            <div class="w3-col s12 m8 l8">
+                <p><?= $params["book"]["description"]  ?></p>
+            </div>
+            <div class="w3-col s12 m4 l4">
+                <h4><b>Megjelenés:</b></h4>
+            </div>
+            <div class="w3-col s12 m8 l8">
+                <h4><?= $params["book"]["published"]  ?></h4>
+            </div>
+            <div class="w3-col s12 m4 l4">
+                <h4><b>Kategóriák:</b></h4>
+            </div>
+            <div class="w3-col s12 m8 l8">
+                <h4><?= $params["book"]["categories"] ?></h4>
+            </div>
+            <div class="w3-col s12 m4 l4">
+                <h4><b>Borító:</b></h4>
+            </div>
+            <div class="w3-col s12 m8 l8">
+                <img src="/public/<?= $params["book"]["cover_url"] ?>" alt="" style="max-height: 200px;">
+            </div>
+            <div class="w3-col s12 m4 l4">
+                <h4><b>Kölcsönzések:</b></h4>
+            </div>
+            <div class="w3-col s12 m8 l8">
+                <h4>34</h4>
+            </div>
+            <div class="w3-col s12 m4 l4">
+                <h4><b>Állapot:</b></h4>
+            </div>
+            <div class="w3-col s12 m8 l8">
+                <h4 class="<?= $params["book"]["isBorrowed"] ? "w3-text-red" : "" ?>"><?= $params["book"]["isBorrowed"] ? "Igen" : "Elérhető" ?></h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="w3-container  w3-margin-bottom-32" id="showcase">
+    <h2 class="w3-xxxlarge w3-text-dark-grey w3-center"><b>Kölcsönzések</b></h2>
+</div>
+
+<div class="w3-container  w3-margin-bottom">
+    <div class="w3-responsive w3-card-4">
+        <table class="w3-table w3-striped w3-bordered w3-border w3 w3-white ">
+            <thead class="w3-dark-grey">
+                <th style="width: 10%;">#</th>
+                <th style="width: 20%;">Név</th>
+                <th style="width: 30%;">Kölcsönzési Dátom</th>
+                <th style="width: 30%;">Határidő</th>
+                <th style="width: 10%;">Visszahozva</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>3</td>
+                    <td>Virra Dóra</td>
+                    <td>2020-04-10</td>
+                    <td>2020-05-10</td>
+                    <td class="">
+                        <a class="w3-button w3-border w3-border-dark-grey w3-hover-dark-grey w3-round">Visszahozva
+                            &nbsp;<i class="fa fa-arrow-right"></i></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Pár Zoltán</td>
+                    <td>2020-03-02</td>
+                    <td>2020-04-02</td>
+                    <td>2020-04-02</td>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Kispál Inka</td>
+                    <td>2020-01-30</td>
+                    <td>2020-03-01</td>
+                    <td>2020-02-25</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

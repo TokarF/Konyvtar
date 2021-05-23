@@ -1,0 +1,54 @@
+<div class="w3-container  w3-margin-bottom-32" id="showcase">
+    <h1 class="w3-xxxlarge w3-text-dark-grey w3-center"><b>Új Könyv</b></h1>
+</div>
+
+<div class="w3-container w3-margin-bottom">
+    <div class="w3-responsive w3-card-4 w3-round-large">
+        <header class="w3-container w3-dark-grey">
+            <h2>Adatok</h2>
+        </header>
+        <form class="w3-container w3-card-4" method="POST" action="/uj-konyv">
+            <br>
+            <p>
+                <label class="w3-show-inline-block w3-margin-bottom-8">Cím</label>
+                <input class="w3-input w3-border" type="text" name="title" required="">
+            </p>
+
+            <p>
+                <label class="w3-show-inline-block w3-margin-bottom-8" for="szerzo">Szerző</label>
+                <select class="w3-input w3-border" id="szerzok" name="author_id" required>
+                    <option value="" disabled selected>Kérem válasszon</option>
+                    <?php foreach ($params["authors"] as $author) : ?>
+                        <option value="<?= $author["id"] ?>"><?= $author["name"] ?></option>
+                    <?php endforeach; ?>
+                </select>
+
+            </p>
+
+            <p>
+                <label class="w3-show-inline-block w3-margin-bottom-8">Leírás</label>
+                <textarea class="w3-input w3-border" style="resize:none; height: 300px;" name="description"></textarea>
+            </p>
+            <p>
+                <label class="w3-show-inline-block w3-margin-bottom-8">Kiadás</label>
+                <input class="w3-input w3-border" type="date" name="published" required>
+            </p>
+            <p>
+                <label class="w3-show-inline-block w3-margin-bottom-8">Oldalak</label>
+                <input class="w3-input w3-border" type="number" name="pages" required>
+            </p>
+            <div class="w3-row">
+                <h5 class="">Kategóriák</h5>
+                <?php foreach ($params["categories"] as $category) : ?>
+                    <div class="w3-col s4 m3 l1">
+                        <input name="categories[]" value="<?= $category["id"] ?>" class="w3-check" type="checkbox">
+                        <label class=""><?= $category["name"] ?></label>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <p class="w3-text-center">
+                <button type="submit" class="w3-button w3-border w3-text-green w3-border-green w3-hover-green w3-round w3-block">Felvitel</button>
+            </p>
+        </form>
+    </div>
+</div>

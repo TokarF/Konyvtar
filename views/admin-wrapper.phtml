@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <link rel="stylesheet" href="/public/css/w3.css">
+</head>
+
+<body class=" w3-light-grey">
+
+  <!-- Sidebar/menu -->
+  <nav class="w3-sidebar w3-dark-grey w3-collapse w3-top w3-large" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-display-topleft" style="width:100%;font-size:22px">Bezár</a>
+    <div class="w3-container">
+      <a href="/">
+        <h3 class="w3-padding-32"><b>Könyvtár</b></h3>
+      </a>
+    </div>
+    <div class="w3-bar-block">
+      <a href="/szerzok" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><i class="fa fa-pencil w3-margin-right"></i>Szerzők</a>
+      <a href="/konyvek" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><i class="fa fa-book w3-margin-right"></i>Könyvek</a>
+      <a href="/kategoriak" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><i class="fa fa-list w3-margin-right"></i>Kategóriák</a>
+      <a href="/olvasok" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><i class="fa fa-users w3-margin-right"></i>Olvasók</a>
+      <a href="kolcsonzesek.html" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><i class="fa fa-exchange w3-margin-right"></i>Kölcsönzések</a>
+      <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white"><i class="fa fa-sign-out w3-margin-right"></i>Kijelentkezés</a>
+    </div>
+  </nav>
+
+  <!-- Top menu on small screens -->
+  <header class="w3-container w3-top w3-hide-large w3-dark-grey w3-xlarge w3-padding">
+    <a href="javascript:void(0)" class="w3-button w3-dark-grey w3-margin-right" onclick="w3_open()">☰</a>
+    <span>Könyvtár</span>
+  </header>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:340px;margin-right:40px">
+
+    <?= $params["content"] ?>
+
+    <!-- End page content -->
+  </div>
+  <script src="/public/js/app.js"></script>
+</body>
+
+</html>
