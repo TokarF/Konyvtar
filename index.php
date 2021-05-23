@@ -14,6 +14,8 @@ $routes = [
     ['GET', '/admin', 'adminDashboardHander'],
     ['GET', '/kategoriak', 'categoriesHandler'],
     ['GET', '/kategoria/{categoryId}', 'categoryHandler'],
+    ['GET', '/kategoria-szerkesztese/{categoryId}', 'editcategoryHandler'],
+    ['GET', '/uj-kategoria', 'createCategoryFormHandler'],
     ['GET', '/konyvek', 'booksHandler'],
     ['GET', '/konyv/{bookId}', 'bookHandler'],
     ['GET', '/uj-konyv', 'createBookFormHandler'],
@@ -22,10 +24,12 @@ $routes = [
     ['GET', '/szerzo-szerkesztese/{authorId}', 'editAuthorHandler'],
     ['GET', '/szerzok', 'authorsHandler'],
     ['GET', '/szerzo/{authorId}', 'authorHandler'],
-    ['POST', '/konyv-szerkesztese/{bookId}', 'updateBookHandler'],
     ['POST', '/szerzo-szerkesztese/{authorId}', 'updateAuthorHandler'],
+    ['POST', '/konyv-szerkesztese/{bookId}', 'updateBookHandler'],
     ['POST', '/uj-konyv', 'createBookHandler'],
     ['POST', '/uj-szerzo', 'createAuthorHandler'],
+    ['POST', '/uj-kategoria', 'createCategoryHandler'],
+    ['POST', '/kategoria-szerkesztese/{categoryId}', 'updatecategoryHandler'],
 
 ];
 
@@ -151,6 +155,48 @@ function categoryHandler($urlParams)
             "category" => $category
         ]),
     ]);
+}
+
+function createCategoryFormHandler()
+{
+    echo render("admin-wrapper.phtml", [
+        "content" => render("uj-kategoria.phtml")
+    ]);
+}
+
+function createCategoryHandler()
+{
+    $pdo = getConnection();
+    $stmt = $pdo->prepare("INSERT INTO categories (name) VALUES (:name)");
+    $stmt->execute([
+        ":name" => $_POST["name"]
+    ]);
+
+    header("Location: /kategoriak");
+}
+
+function editcategoryHandler($urlParams)
+{
+    $pdo = getConnection();
+    $category = getCategoryById($pdo, $urlParams["categoryId"]);
+
+    echo render("admin-wrapper.phtml", [
+        "content" => render("kategoria-szerkesztese.phtml", [
+            "category" => $category
+        ])
+    ]);
+}
+
+function updatecategoryHandler($urlParams)
+{
+    $pdo = getConnection();
+
+    $stmt = $pdo->prepare("UPDATE categories SET name = :name WHERE id = :id");
+    $stmt->execute([
+        ":name" => $_POST["name"],
+        ":id" => $urlParams["categoryId"]
+    ]);
+    header("Location: /kategoria/" . $urlParams["categoryId"]);
 }
 
 function booksHandler()
