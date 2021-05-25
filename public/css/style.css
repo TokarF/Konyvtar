@@ -11,6 +11,10 @@
 
 }
 
+#bookList::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
 th, td {
   white-space: nowrap;
 }

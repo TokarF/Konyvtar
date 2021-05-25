@@ -1,58 +1,28 @@
 <div class="w3-container  w3-margin-bottom-32" id="showcase">
-    <h1 class="w3-xxxlarge w3-text-dark-grey w3-center"><b>Olvasó</b></h1>
+    <h1 class="w3-xxxlarge w3-text-dark-grey w3-center"><b>Kölcsönzések</b></h1>
 </div>
 
-<div class="w3-container w3-margin-bottom">
-    <div class="w3-responsive w3-card-4 w3-round-large">
-        <header class="w3-container w3-dark-grey">
-            <h2>Adatok</h2>
-        </header>
-        <div class="w3-row-padding w3-margin-bottom">
-            <div class="w3-third">
-                <h4><b>Név:</b></h4>
-            </div>
-            <div class="w3-twothird">
-                <h4><?= $params["reader"]["lastName"] . " " . $params["reader"]["firstName"] ?></h4>
-            </div>
-            <div class="w3-third">
-                <h4><b>Email:</b></h4>
-            </div>
-            <div class="w3-twothird">
-                <h4><?= $params["reader"]["email"] ?></h4>
-            </div>
-            <div class="w3-third">
-                <h4><b>Mobil:</b></h4>
-            </div>
-            <div class="w3-twothird">
-                <h4><?= $params["reader"]["mobile"] ?></h4>
-            </div>
-            <div class="w3-third">
-                <h4><b>Cím:</b></h4>
-            </div>
-            <div class="w3-twothird">
-                <h4><?= $params["reader"]["address"] ?><h4>
-            </div>
-            <div class="w3-third">
-                <h4><b>Csatlakozott:</b></h4>
-            </div>
-            <div class="w3-twothird">
-                <h4><?= date("Y-m-d", strtotime($params["reader"]["joined_at"])); ?></h4>
-            </div>
-
+<form action="/kereses" method="GET">
+    <div class="w3-row-padding w3-margin-bottom">
+        <div class="w3-third">
+            <input class="w3-input w3-border w3-round " type="text" placeholder="Könyv címe">
+        </div>
+        <div class="w3-third">
+            <button class="w3-button w3-border w3-blue  w3-hover-dark-blue w3-round w3-block"><i class="fa fa-search w3-margin-right"></i>Keresés</button>
+        </div>
+        <div class="w3-third">
+            <a href="/uj-kolcsonzes" class="w3-button w3-border w3-green  w3-hover-dark-green w3-round w3-block"><i class="fa fa-plus w3-margin-right"></i>Új kölcsönzés</a>
         </div>
     </div>
-</div>
-
-<div class="w3-container  w3-margin-bottom-32" id="showcase">
-    <h2 class="w3-xxxlarge w3-text-dark-grey w3-center"><b>Kölcsönzések</b></h2>
-</div>
+</form>
 
 <div class="w3-container  w3-margin-bottom">
     <div class="w3-responsive w3-card-4 w3-round-large">
-        <table class="w3-table w3-striped w3-bordered w3-border w3 w3-white ">
+        <table class="w3-table w3-striped w3-bordered w3-border w3 w3-white w3-centered">
             <thead class="w3-dark-grey">
                 <th style="width: 10%;">#</th>
                 <th style="width: 20%;">Cím</th>
+                <th style="width: 20%;">Olvasó</th>
                 <th style="width: 30%;">Kivette</th>
                 <th style="width: 30%;">Határidő</th>
                 <th style="width: 10%;">Visszahozva</th>
@@ -62,7 +32,8 @@
                 <?php foreach ($params["borrows"] as $borrow) : ?>
                     <tr>
                         <td><?= $borrow["id"] ?></td>
-                        <td><?= $borrow["book_title"] ?></td>
+                        <td><?= $borrow["book"] ?></td>
+                        <td><?= $borrow["reader"] ?></td>
                         <td><?= $borrow["borrow_date"] ?></td>
                         <td><?= $borrow["due_date"] ?></td>
                         <?php if (!is_null($borrow["return_date"])) : ?>

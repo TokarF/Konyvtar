@@ -46,7 +46,7 @@ function createAuthorHandler()
         ":name" => $_POST["name"],
         ":bio" => $_POST["bio"],
     ]);
-    header("Location: /szerzo/" . $pdo->lastInsertId());
+    header("Location: /szerzok");
 }
 
 function editAuthorHandler($urlParams)

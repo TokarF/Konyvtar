@@ -50,17 +50,19 @@ function createBookHandler()
         ]);
     }
 
-    header("Location: /konyv/" . $newBookId);
+    header("Location: /konyvek");
 }
 
 function bookHandler($urlParams)
 {
     $pdo = getConnection();
     $book = getBookById($pdo, $urlParams["bookId"]);
+    $borrows = getBorrowsByBookId($pdo, $urlParams["bookId"]);
 
     echo render("admin-wrapper.phtml", [
         "content" => render("konyv.phtml", [
-            "book" => $book
+            "book" => $book,
+            "borrows" => $borrows
         ]),
     ]);
 }
@@ -117,7 +119,7 @@ function updateBookHandler($urlParams)
         ]);
     }
 
-    header("Location: /konyv/" . $urlParams["bookId"]);
+    header("Location: /konyvek");
 }
 
 
@@ -129,6 +131,23 @@ function getAllBooks($pdo)
     LEFT JOIN categories C ON C.id = BC.category_id
     GROUP BY B.title ORDER BY B.id");
     $stmt->execute();
+    $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $books;
+}
+
+function getAllActiveBooks($pdo, $editedBookId = null)
+{
+    $params = [];
+    
+    if ($editedBookId) {
+        $sql = "SELECT * FROM books B WHERE isBorrowed = 0 OR B.id = :editedBookId";
+        $params = [":editedBookId" => $editedBookId];
+    } else {
+        $sql = "SELECT * FROM books B WHERE isBorrowed = 0";
+    }
+    
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params);
     $books = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $books;
 }

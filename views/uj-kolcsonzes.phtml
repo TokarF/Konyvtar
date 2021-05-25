@@ -1,0 +1,95 @@
+<div class="w3-container  w3-margin-bottom-32" id="showcase">
+    <h1 class="w3-xxxlarge w3-text-dark-grey w3-center"><b>Új Kölcsönzés</b></h1>
+</div>
+
+<div class="w3-container w3-margin-bottom">
+    <div class="w3-responsive w3-card-4 w3-round-large">
+        <header class="w3-container w3-dark-grey">
+            <h2>Adatok</h2>
+        </header>
+        <form class="w3-container w3-card-4" method="POST" action="/uj-kolcsonzes" ?>
+            <br>
+            <p>
+                <label class="w3-show-inline-block w3-margin-bottom-8" for="konyvek">Könyv</label>
+                <input class="w3-input w3-border" list="books" id="bookList" name="bookList" autocomplete="off" required/>
+                <datalist id="books">
+                    <?php foreach ($params["books"] as $book) : ?>
+                        <option data-bookid="<?= $book["id"] ?>" value="<?= $book["title"] ?>" />
+                    <?php endforeach; ?>
+                </datalist>
+                <input type="hidden" name="book_id" id="bookId-hidden" required>
+            </p>
+            <p>
+                
+                <label class="w3-show-inline-block w3-margin-bottom-8" for="olvasok">Olvasó</label>
+                <input class="w3-input w3-border" list="readers" id="readersList" name="readersList" autocomplete="off" required/>
+                <datalist id="readers">
+                    <?php foreach ($params["readers"] as $reader) : ?>
+                        <option data-readerid="<?= $reader["id"] ?>" value="<?= $reader["lastName"] . " " . $reader["firstName"] ?>" />
+                    <?php endforeach; ?>
+                </datalist>
+                <input type="hidden" name="reader_id" id="readerId-hidden" required>
+            </p>
+            <p>
+                <label class="w3-show-inline-block w3-margin-bottom-8">Kikölcsönözve</label>
+                <input id="borrowDate" class="w3-input w3-border" type="date" name="borrow_date" value="<?= date("Y-m-d") ?>" required>
+            </p>
+            <p>
+                <label class="w3-show-inline-block w3-margin-bottom-8">Határidő</label>
+                <input id="dueDate" class="w3-input w3-border" type="date" name="due_date" value="" required>
+                <input name="duedate" value="7" class="w3-radio" type="radio" onclick="addDays(this);">
+                <label class="">+7 nap</label>
+                <input name="duedate" value="14" class="w3-radio" type="radio" onclick="addDays(this);">
+                <label class="">+14 nap</label>
+                <input name="duedate" value="21" class="w3-radio" type="radio" onclick="addDays(this);">
+                <label class="">+21 nap</label>
+            </p>
+            <p class="w3-text-center">
+                <button type="submit" class="w3-button w3-border w3-green w3-hover-dark-green w3-round w3-block">Felvitel</button>
+            </p>
+        </form>
+    </div>
+</div>
+
+<script>
+    function addDays(rdb) {
+        let date = new Date(document.querySelector("#borrowDate").value);
+        date.setDate(date.getDate() + parseInt(rdb.value));
+        document.querySelector("#dueDate").value = date.toISOString().substring(0, 10);
+    }
+
+    document.querySelector('#bookList').addEventListener('input', function(e) {
+        var input = e.target,
+            list = input.getAttribute('list'),
+            options = document.querySelectorAll('#' + list + ' option[value="' + input.value + '"]'),
+            hiddenInput = document.querySelector("#bookId-hidden");
+
+        if (options.length > 0) {
+            hiddenInput.value = input.value;
+            console.log(input.getAttribute("data-bookid"));
+            console.log(options[0].getAttribute('data-bookid'));
+            // hiddenInput.value = input.dataset.bookid;
+            hiddenInput.value = options[0].dataset.bookid;
+            input.value = options[0].value;
+        }
+
+    });
+
+    document.querySelector('#readersList').addEventListener('input', function(e) {
+        var input = e.target,
+            list = input.getAttribute('list'),
+            options = document.querySelectorAll('#' + list + ' option[value="' + input.value + '"]'),
+            hiddenInput = document.querySelector("#readerId-hidden");
+
+        if (options.length > 0) {
+            hiddenInput.value = input.value;
+            console.log(input.getAttribute("data-readerid"));
+            console.log(options[0].getAttribute('data-readerid'));
+            // hiddenInput.value = input.dataset.bookid;
+            hiddenInput.value = options[0].dataset.readerid;
+            input.value = options[0].value;
+        }
+
+    });
+</script>
+

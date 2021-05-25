@@ -6,6 +6,7 @@ require './authors.php';
 require './categories.php';
 require './books.php';
 require './readers.php';
+require './borrows.php';
 
 $method = $_SERVER["REQUEST_METHOD"];
 $parsed = parse_url($_SERVER['REQUEST_URI']);
@@ -48,6 +49,15 @@ $routes = [
     ['GET', '/uj-olvaso', 'createReaderFormHandler'],
     ['POST', '/uj-olvaso', 'createReaderHandler'],
 
+    // Kölcsönzések
+    ['GET', '/kolcsonzesek', 'borrowsHandler'],
+    ['GET', '/uj-kolcsonzes', 'createBorrowFormHandler'],
+    ['POST', '/uj-kolcsonzes', 'createBorrowHandler'],
+    ['GET', '/kolcsonzes-szerkesztese/{borrowId}', 'editBorrowHandler'],
+    ['POST', '/kolcsonzes-szerkesztese/{borrowId}', 'updateBorrowHandler'],
+    ["POST", '/kolcsonzes-visszahozva/{borrowId}', 'bookReturnHandler'],
+
+
 ];
 
 // Útvonalválasztó inicializálása
@@ -64,13 +74,15 @@ function homeHandler()
     $books = getAllBooks($pdo);
     $authors = getAllAuthors($pdo);
     $readers = getAllReaders($pdo);
+    $borrows = getAllActiveBorrows($pdo);
 
     echo render("admin-wrapper.phtml", [
         "content" => render("admin.phtml", [
             "categories" => $bookCategories,
             "books" => $books,
             "authors" => $authors,
-            "readers" => $readers
+            "readers" => $readers,
+            "borrows" => $borrows
         ]),
     ]);
 }

@@ -16,10 +16,12 @@ function readerHandler($urlParams)
 {
     $pdo = getConnection();
     $reader = getReaderById($pdo, $urlParams["readerId"]);
+    $borrows = getBorrowsByReaderId($pdo, $urlParams["readerId"]);
 
     echo render("admin-wrapper.phtml", [
         "content" => render("olvaso.phtml", [
             "reader" => $reader,
+            "borrows" => $borrows
         ]),
     ]);
 }
@@ -49,7 +51,7 @@ function updateReaderHandler($urlParams)
         "id" => $urlParams["readerId"],
     ]);
 
-    header("Location: /olvaso/" . $urlParams["readerId"]);
+    header("Location: /olvasok");
 }
 
 function createReaderFormHandler()
